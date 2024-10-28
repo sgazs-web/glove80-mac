@@ -1,0 +1,358 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/keys.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+
+// layers
+
+#define DEFAULT 0
+#define LOWER 1
+#define MAGIC 2
+
+&mt {
+    tapping-term-ms = <201>;
+    flavor = "tap-preferred";
+};
+
+&sk {
+    release-after-ms = <2000>;
+    quick-release;
+};
+
+/ {
+    behaviors {
+        // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
+        // Configure it as a tap dance, so the first tap (or hold) is a &mo and the second tap is a &to
+
+        magic: magic_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            label = "MAGIC_HOLD_TAP";
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
+
+        layer_td: tap_dance_0 {
+            compatible = "zmk,behavior-tap-dance";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&mo 8>, <&to 8>;
+        };
+
+        hl: hl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HL";
+            bindings = <&sl>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <220>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            hold-trigger-on-release;
+            require-prior-idle-ms = <50>;
+        };
+
+        sr: sr {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SR";
+            bindings = <&kp>, <&to>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            quick-tap-ms = <0>;
+            flavor = "tap-preferred";
+            retro-tap;
+            require-prior-idle-ms = <50>;
+        };
+
+        hm: hm {
+            compatible = "zmk,behavior-hold-tap";
+            label = "HM";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <300>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <0>;
+            hold-trigger-on-release;
+            require-prior-idle-ms = <50>;
+        };
+
+        td: td {
+            compatible = "zmk,behavior-hold-tap";
+            label = "TD";
+            bindings = <&kp>, <&kp>;
+
+            #binding-cells = <2>;
+            tapping-term-ms = <190>;
+            flavor = "tap-preferred";
+            quick-tap-ms = <0>;
+            hold-trigger-on-release;
+            require-prior-idle-ms = <50>;
+        };
+
+        alpha2: alpha2 {
+            compatible = "zmk,behavior-hold-tap";
+            label = "ALPHA2";
+            bindings = <&mo>, <&alpha2macro>;
+
+            #binding-cells = <2>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <300>;
+            quick-tap-ms = <0>;
+        };
+
+        kpsk: kpsk {
+            compatible = "zmk,behavior-hold-tap";
+            label = "KPSK";
+            bindings = <&msk>, <&kp>;
+
+            #binding-cells = <2>;
+            hold-trigger-on-release;
+            tapping-term-ms = <190>;
+            require-prior-idle-ms = <50>;
+            flavor = "tap-preferred";
+        };
+
+        sl_hl: sl_hl {
+            compatible = "zmk,behavior-hold-tap";
+            label = "SL_HL";
+            bindings = <&mo>, <&msl>;
+
+            #binding-cells = <2>;
+            hold-trigger-on-release;
+            tapping-term-ms = <190>;
+            require-prior-idle-ms = <50>;
+            flavor = "tap-preferred";
+        };
+    };
+
+    macros {
+        rgb_ug_status_macro: rgb_ug_status_macro_0 {
+            label = "RGB_UG_STATUS";
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&rgb_ug RGB_STATUS>;
+        };
+
+        bt_0: bt_profile_macro_0 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 0>;
+        };
+
+        bt_1: bt_profile_macro_1 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 1>;
+        };
+
+        bt_2: bt_profile_macro_2 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 2>;
+        };
+
+        bt_3: bt_profile_macro_3 {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&out OUT_BLE &bt BT_SEL 3>;
+        };
+
+        alpha2macro: alpha2macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings = <&msl 1>;
+            label = "ALPHA2MACRO";
+        };
+
+        msk: sk {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &sk MACRO_PLACEHOLDER>;
+            label = "SK";
+        };
+
+        msl: sl {
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
+            bindings = <&macro_param_1to1 &sl MACRO_PLACEHOLDER>;
+            label = "SL";
+        };
+
+        alt_tab: alt_tab {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings =
+                <&macro_press>,
+                <&mo 10 &kp LEFT_GUI>,
+                <&macro_pause_for_release>,
+                <&macro_release>,
+                <&mo 10 &kp LEFT_GUI>;
+
+            label = "ALT_TAB";
+        };
+    };
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_sys {
+            bindings = <&to 5>;
+            key-positions = <41 42 43>;
+            timeout-ms = <30>;
+        };
+
+        combo_caps {
+            bindings = <&caps_word>;
+            key-positions = <59 60 61>;
+            timeout-ms = <30>;
+        };
+
+        leftH {
+            bindings = <&to 0>;
+            key-positions = <38 37 36>;
+            timeout-ms = <30>;
+            layers = <0>;
+        };
+
+        to_base {
+            bindings = <&to 0>;
+            key-positions = <36 37 38>;
+            timeout-ms = <30>;
+        };
+    };
+
+    keymap {
+        compatible = "zmk,keymap";
+
+        alpha1 {
+            bindings = <
+&to 0       &trans    &to 7           &trans            &trans                                                                                                                  &trans             &trans          &trans           &trans    &trans
+&trans      &trans    &kp C_PREV      &kp C_PLAY_PAUSE  &kp C_NEXT   &trans                                                                                             &trans  &kp C_VOLUME_DOWN  &kp C_MUTE      &kp C_VOLUME_UP  &trans    &trans
+&trans      &trans    &hm LEFT_ALT L  &hm LEFT_GUI D    &hm LCTRL W  &trans                                                                                             &trans  &hm LCTRL Y        &hm LEFT_GUI F  &hm LEFT_ALT U   &trans    &trans
+&trans      &hl 2 A   &hl 4 S         &mt X E           &hl 5 R      &trans                                                                                             &trans  &hl 5 N            &mt K I         &hl 4 O          &hl 2 T   &trans
+&trans      &kp J     &mt Q G         &mt Z C           &mt K P      &trans  &hl 6 TAB               &kp LEFT_SHIFT  &trans     &trans     &trans          &key_repeat  &trans  &mt Q H            &mt X M         &mt Z V          &kp B     &trans
+&magic 8 0  &kp DOWN  &kp UP_ARROW    &kp LEFT          &kp RIGHT            &kpsk LEFT_SHIFT SPACE  &kp LCTRL       &kp SPACE  &kp SPACE  &kp LEFT_SHIFT  &sl_hl 3 1           &kp LEFT           &kp RIGHT       &kp UP           &kp DOWN  &trans
+            >;
+        };
+
+        alpha2 {
+            bindings = <
+&trans  &trans  &trans   &trans         &trans                                                                                &trans      &trans       &trans             &trans  &trans
+&trans  &trans  &trans   &trans         &trans       &trans                                                           &trans  &trans      &trans       &trans             &trans  &trans
+&trans  &trans  &trans   &trans         &trans       &trans                                                           &trans  &kp HASH    &kp EQUAL    &kp UNDERSCORE     &trans  &trans
+&trans  &trans  &kp SQT  &kp LS(GRAVE)  &kp AT_SIGN  &trans                                                           &trans  &kp PERIOD  &kp COMMA    &kp DOUBLE_QUOTES  &trans  &trans
+&trans  &trans  &trans   &trans         &trans       &trans  &trans           &trans  &trans  &trans  &trans  &trans  &trans  &kp DLLR    &kp PERCENT  &kp LS(NUMBER_6)   &trans  &trans
+&trans  &trans  &trans   &trans         &trans               &msk LEFT_SHIFT  &trans  &trans  &trans  &trans  &trans          &trans      &trans       &trans             &trans  &trans
+            >;
+        };
+
+        num {
+            bindings = <
+&trans  &trans  &trans            &trans        &trans                                                                                           &trans           &trans              &trans           &trans  &trans
+&trans  &trans  &trans            &trans        &trans                 &trans                                                            &trans  &trans           &trans              &trans           &trans  &trans
+&trans  &trans  &kp PERCENT       &kp CARET     &trans                 &trans                                                            &trans  &kp PLUS         &kp MINUS           &kp POUND        &trans  &trans
+&trans  &trans  &hm LEFT_GUI DOT  &hm LCTRL N0  &hm LEFT_ALT NUMBER_1  &trans                                                            &trans  &hm LEFT_ALT N2  &hm LCTRL NUMBER_3  &hm LEFT_GUI N4  &trans  &trans
+&trans  &none   &kp PLUS          &kp N5        &kp N6                 &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &kp N7           &kp N8              &kp N9           &trans  &trans
+&trans  &trans  &trans            &trans        &trans                         &sr LEFT_SHIFT 0  &trans  &trans  &trans  &trans  &trans          &trans           &trans              &trans           &trans  &trans
+            >;
+        };
+
+        System {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &mo 9     &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &alt_tab  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans    &trans  &trans
+            >;
+        };
+
+        sym {
+            bindings = <
+&trans  &trans         &trans     &trans         &trans                                                                                      &trans                &trans                 &trans         &trans      &trans
+&trans  &trans         &trans     &trans         &trans            &trans                                                            &trans  &trans                &trans                 &trans         &trans      &trans
+&trans  &trans         &kp STAR   &kp SLASH      &kp EXCLAMATION   &trans                                                            &trans  &kp LEFT_BRACKET      &kp RIGHT_BRACKET      &kp EQUAL      &trans      &trans
+&trans  &kp COLON      &kp GRAVE  &kp LESS_THAN  &kp GREATER_THAN  &trans                                                            &trans  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &kp AMPERSAND  &kp SEMI    &trans
+&trans  &kp BACKSLASH  &kp PLUS   &kp MINUS      &kp QUESTION      &trans  &trans            &trans  &trans  &trans  &trans  &trans  &trans  &kp LEFT_BRACE        &kp RIGHT_BRACE        &kp PIPE       &kp DOLLAR  &trans
+&trans  &trans         &trans     &trans         &trans                    &sr LEFT_SHIFT 0  &trans  &trans  &trans  &trans  &trans          &trans                &trans                 &trans         &trans      &trans
+            >;
+        };
+
+        sys {
+            bindings = <
+&trans  &trans     &trans      &trans         &trans                                                                                        &trans     &trans              &trans               &trans        &trans
+&trans  &trans     &trans      &trans         &trans             &trans                                                             &trans  &trans     &trans              &trans               &trans        &trans
+&trans  &trans     &kp DELETE  &kp LG(SPACE)  &kp LG(S)          &trans                                                             &trans  &trans     &kp LG(LEFT_ARROW)  &kp LG(RIGHT_ARROW)  &trans        &trans
+&trans  &kp LCTRL  &kp ESC     &kp LS(TAB)    &kp TAB            &trans                                                             &trans  &kp ENTER  &kp UP              &kp BSPC             &kp LEFT_GUI  &trans
+&trans  &kp LG(Z)  &kp LG(C)   &kp LG(V)      &kp LC(BACKSPACE)  &trans  &trans       &trans  &trans  &trans  &trans  &trans        &trans  &kp LEFT   &kp DOWN            &kp RIGHT            &trans        &trans
+&trans  &trans     &trans      &trans         &trans                     &sr LSHFT 0  &trans  &trans  &trans  &trans  &kp LEFT_ALT          &trans     &trans              &trans               &trans        &trans
+            >;
+        };
+
+        function {
+            bindings = <
+&trans  &trans  &trans    &trans           &trans                                                                   &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &trans    &trans           &trans   &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp F10   &kp F11          &kp F12  &trans                                                  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans  &kp HOME  &kp PRINTSCREEN  &kp F1   &trans                                                  &trans  &kp F2  &kp F3  &kp F4  &trans  &trans
+&trans  &trans  &trans    &kp F5           &kp F6   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp F7  &kp F8  &kp F9  &trans  &trans
+&trans  &trans  &trans    &trans           &trans           &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        Game {
+            bindings = <
+&trans  &trans            &trans     &trans  &trans                                                                              &trans  &trans  &trans  &trans  &trans
+&trans  &trans            &trans     &trans  &trans     &trans                                                           &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp ESC           &kp SLASH  &kp F   &kp GRAVE  &trans                                                           &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT_CONTROL  &kp A      &kp W   &kp D      &trans                                                           &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT_SHIFT    &kp Q      &kp S   &kp E      &trans  &trans     &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &trans            &trans     &trans  &trans             &kp SPACE  &kp LEFT_GUI  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        magic_layer {
+            bindings = <
+&bt BT_CLR   &bt BT_DISC 0    &out OUT_BLE     &bt BT_SEL 4     &bt BT_CLR_ALL                                                                            &none  &none  &none  &none  &none
+&none        &none            &none            &none            &none            &none                                                             &none  &none  &none  &none  &none  &none
+&none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                   &none  &none  &none  &none  &none  &none
+&bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                   &none  &none  &none  &none  &none  &bootloader
+&sys_reset   &none            &none            &none            &none            &none            &bt_2  &bt_3  &bt BT_SEL 0  &none  &none  &none  &none  &none  &none  &none  &none  &sys_reset
+&none        &none            &none            &none            &none                             &bt_0  &bt_1  &out OUT_USB  &none  &none  &none         &none  &none  &none  &none  &none
+            >;
+        };
+
+        macOS_Magnet {
+            bindings = <
+&trans  &trans  &trans                  &trans                  &trans                                                                                   &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &trans                  &trans                  &trans                   &trans                                                  &trans  &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &kp LA(LC(U))           &kp LA(LC(UP_ARROW))    &kp LC(LA(I))            &trans                                                  &trans  &trans                  &kp LA(LC(BACKSLASH))    &trans  &trans  &trans
+&trans  &trans  &kp LA(LC(LEFT_ARROW))  &kp LA(LC(ENTER))       &kp LA(LC(RIGHT_ARROW))  &trans                                                  &trans  &kp LA(LG(LEFT_ARROW))  &kp LG(LA(RIGHT_ARROW))  &trans  &trans  &trans
+&trans  &trans  &kp LC(LA(J))           &kp LA(LC(DOWN_ARROW))  &kp LA(LC(K))            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &trans                  &trans                  &trans                           &trans  &trans  &trans  &trans  &trans  &trans          &trans                  &trans                   &trans  &trans  &trans
+            >;
+        };
+
+        macOS_WinNav {
+            bindings = <
+&trans  &trans  &trans  &trans  &trans                                                                  &trans       &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans       &trans     &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &kp Q        &kp GRAVE  &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &kp LS(TAB)  &kp TAB    &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &kp N        &kp W      &trans  &trans  &trans
+&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans       &trans     &trans  &trans  &trans
+            >;
+        };
+    };
+};
