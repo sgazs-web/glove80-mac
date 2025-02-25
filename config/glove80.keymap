@@ -269,12 +269,12 @@
 
         System {
             bindings = <
-&trans  &trans  &trans  &trans  &trans                                                                  &trans  &trans  &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &mo 9     &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans                                                  &trans  &trans  &trans  &alt_tab  &trans  &trans
-&trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans
-&trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans    &trans  &trans
+&trans  &trans                &trans                &trans                &trans                                                                                &trans  &trans  &trans    &trans  &trans
+&trans  &trans                &trans                &trans                &trans                &trans                                                  &trans  &trans  &trans  &trans    &trans  &trans
+&trans  &trans                &kp LG(NUMBER_1)      &kp LG(NUMBER_2)      &kp LG(NUMBER_3)      &trans                                                  &trans  &trans  &trans  &mo 9     &trans  &trans
+&trans  &kp LC(LG(NUMBER_4))  &kp LC(LG(NUMBER_2))  &kp LC(LG(NUMBER_1))  &kp LC(LG(NUMBER_3))  &trans                                                  &trans  &trans  &trans  &alt_tab  &trans  &trans
+&trans  &kp LC(LG(N5))        &kp LC(LG(NUMBER_6))  &kp LC(LG(N7))        &kp LC(LG(N8))        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans
+&trans  &trans                &trans                &trans                &trans                        &trans  &trans  &trans  &trans  &trans  &trans          &trans  &trans  &trans    &trans  &trans
             >;
         };
 
@@ -335,12 +335,12 @@
 
         macOS_Magnet {
             bindings = <
-&trans  &trans  &trans                  &trans                  &trans                                                                                   &trans                  &trans                   &trans  &trans  &trans
-&trans  &trans  &trans                  &trans                  &trans                   &trans                                                  &trans  &trans                  &trans                   &trans  &trans  &trans
-&trans  &trans  &kp LA(LC(U))           &kp LA(LC(UP_ARROW))    &kp LC(LA(I))            &trans                                                  &trans  &trans                  &kp LA(LC(BACKSLASH))    &trans  &trans  &trans
-&trans  &trans  &kp LA(LC(LEFT_ARROW))  &kp LA(LC(ENTER))       &kp LA(LC(RIGHT_ARROW))  &trans                                                  &trans  &kp LA(LG(LEFT_ARROW))  &kp LG(LA(RIGHT_ARROW))  &trans  &trans  &trans
-&trans  &trans  &kp LC(LA(J))           &kp LA(LC(DOWN_ARROW))  &kp LA(LC(K))            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                  &trans                   &trans  &trans  &trans
-&trans  &trans  &trans                  &trans                  &trans                           &trans  &trans  &trans  &trans  &trans  &trans          &trans                  &trans                   &trans  &trans  &trans
+&trans  &trans  &trans                  &trans                  &trans                                                                                   &trans                      &trans                       &trans  &trans  &trans
+&trans  &trans  &trans                  &trans                  &trans                   &trans                                                  &trans  &trans                      &trans                       &trans  &trans  &trans
+&trans  &trans  &kp LA(LC(U))           &kp LA(LC(UP_ARROW))    &kp LC(LA(I))            &trans                                                  &trans  &trans                      &kp LA(LC(BACKSLASH))        &trans  &trans  &trans
+&trans  &trans  &kp LA(LC(LEFT_ARROW))  &kp LA(LC(ENTER))       &kp LA(LC(RIGHT_ARROW))  &trans                                                  &trans  &kp LA(LG(LC(LEFT_ARROW)))  &kp LG(LA(LC(RIGHT_ARROW)))  &trans  &trans  &trans
+&trans  &trans  &kp LC(LA(J))           &kp LA(LC(DOWN_ARROW))  &kp LA(LC(K))            &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans                      &trans                       &trans  &trans  &trans
+&trans  &trans  &trans                  &trans                  &trans                           &trans  &trans  &trans  &trans  &trans  &trans          &trans                      &trans                       &trans  &trans  &trans
             >;
         };
 
