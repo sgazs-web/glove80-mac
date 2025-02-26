@@ -248,7 +248,7 @@
 &trans      &trans    &hm LEFT_ALT L  &hm LEFT_GUI D    &hm LCTRL W  &trans                                                                                             &trans  &hm LCTRL Y        &hm LEFT_GUI F  &hm LEFT_ALT U   &trans    &trans
 &trans      &hl 2 A   &hl 4 S         &mt X E           &hl 5 R      &trans                                                                                             &trans  &hl 5 N            &mt K I         &hl 4 O          &hl 2 T   &trans
 &trans      &kp J     &mt Q G         &mt Z C           &mt K P      &trans  &hl 6 TAB               &kp LEFT_SHIFT  &trans     &trans     &trans          &key_repeat  &trans  &mt Q H            &mt X M         &mt Z V          &kp B     &trans
-&magic 8 0  &kp DOWN  &kp UP_ARROW    &kp LEFT          &kp RIGHT            &kpsk LEFT_SHIFT SPACE  &to 11          &kp SPACE  &kp SPACE  &kp LEFT_SHIFT  &sl_hl 3 1           &kp LEFT           &kp RIGHT       &kp UP           &kp DOWN  &trans
+&magic 8 0  &kp DOWN  &kp UP_ARROW    &kp LEFT          &kp RIGHT            &kpsk LEFT_SHIFT SPACE  &mkp_to ESC 11  &kp SPACE  &kp SPACE  &kp LEFT_SHIFT  &sl_hl 3 1           &kp LEFT           &kp RIGHT       &kp UP           &kp DOWN  &trans
             >;
         };
 
