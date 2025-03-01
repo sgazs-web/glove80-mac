@@ -243,12 +243,12 @@
 
         alpha1 {
             bindings = <
-&to 0       &trans    &to 8           &trans            &trans                                                                                                                  &trans             &trans          &trans           &trans    &trans
-&trans      &trans    &kp C_PREV      &kp C_PLAY_PAUSE  &kp C_NEXT   &trans                                                                                             &trans  &kp C_VOLUME_DOWN  &kp C_MUTE      &kp C_VOLUME_UP  &trans    &trans
-&trans      &trans    &hm LEFT_ALT L  &hm LEFT_GUI D    &hm LCTRL W  &trans                                                                                             &trans  &hm LCTRL Y        &hm LEFT_GUI F  &hm LEFT_ALT U   &trans    &trans
-&trans      &hl 3 A   &hl 5 S         &mt X E           &hl 6 R      &trans                                                                                             &trans  &hl 6 N            &mt K I         &hl 5 O          &hl 3 T   &trans
-&trans      &kp J     &mt Q G         &mt Z C           &mt K P      &trans  &hl 7 TAB               &kp LEFT_SHIFT  &trans     &trans     &trans          &key_repeat  &trans  &mt Q H            &mt X M         &mt Z V          &kp B     &trans
-&magic 9 0  &kp DOWN  &kp UP_ARROW    &kp LEFT          &kp RIGHT            &kpsk LEFT_SHIFT SPACE  &mkp_to ESC 1   &kp SPACE  &kp SPACE  &kp LEFT_SHIFT  &sl_hl 4 2           &kp LEFT           &kp RIGHT       &kp UP           &kp DOWN  &trans
+&to 0       &trans    &to 8           &trans            &trans                                                                                                                     &trans             &trans          &trans           &trans    &trans
+&trans      &trans    &kp C_PREV      &kp C_PLAY_PAUSE  &kp C_NEXT   &trans                                                                                                &trans  &kp C_VOLUME_DOWN  &kp C_MUTE      &kp C_VOLUME_UP  &trans    &trans
+&trans      &trans    &hm LEFT_ALT L  &hm LEFT_GUI D    &hm LCTRL W  &trans                                                                                                &trans  &hm LCTRL Y        &hm LEFT_GUI F  &hm LEFT_ALT U   &trans    &trans
+&trans      &hl 3 A   &hl 5 S         &mt X E           &hl 6 R      &trans                                                                                                &trans  &hl 6 N            &mt K I         &hl 5 O          &hl 3 T   &trans
+&trans      &kp J     &mt Q G         &mt Z C           &mt K P      &trans  &hl 7 TAB               &kp LEFT_SHIFT  &kp LEFT_GUI  &trans     &trans          &key_repeat  &trans  &mt Q H            &mt X M         &mt Z V          &kp B     &trans
+&magic 9 0  &kp DOWN  &kp UP_ARROW    &kp LEFT          &kp RIGHT            &kpsk LEFT_SHIFT SPACE  &mkp_to ESC 1   &kp SPACE     &kp SPACE  &kp LEFT_SHIFT  &sl_hl 4 2           &kp LEFT           &kp RIGHT       &kp UP           &kp DOWN  &trans
             >;
         };
 
