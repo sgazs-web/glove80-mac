@@ -335,9 +335,9 @@
             bindings = <
 &trans  &trans            &trans  &trans     &trans                                                                           &trans  &trans  &trans  &trans  &trans
 &trans  &trans            &trans  &trans     &trans  &trans                                                           &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp ESC           &kp F   &kp SLASH  &kp M   &kp B                                                            &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp ESC           &kp F   &kp SLASH  &kp L   &kp B                                                            &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &kp LEFT_CONTROL  &kp A   &kp W      &kp D   &kp M                                                            &trans  &trans  &trans  &trans  &trans  &trans
-&trans  &kp LEFT_SHIFT    &kp Q   &kp S      &kp E   &kp L   &trans     &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
+&trans  &kp LEFT_SHIFT    &kp Q   &kp S      &kp E   &kp J   &trans     &trans        &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans
 &trans  &trans            &trans  &trans     &trans          &kp SPACE  &kp LEFT_GUI  &trans  &trans  &trans  &trans          &trans  &trans  &trans  &trans  &trans
             >;
         };
